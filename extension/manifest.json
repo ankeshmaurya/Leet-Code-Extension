@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode AI Solver",
+  "version": "1.2.0",
+  "description": "Automatically solve LeetCode problems with AI. Auto-detects programming language, injects solution, runs tests, and auto-submits if all test cases pass.",
+  "permissions": ["activeTab", "scripting", "clipboardWrite", "storage"],
+  "host_permissions": ["https://leetcode.com/*"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["injected.js", "content.js"],
+    "matches": ["https://leetcode.com/*"]
+  }],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}
